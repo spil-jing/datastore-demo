@@ -28,7 +28,18 @@ Returns a list of question entities for a given quiz
 - if redact is true, remove the correctAnswer property from each entity
 """
 def list_entities(quiz='gcp', redact=True):
-    return []
+    query = datastore_client.query(kind='Question')
+    query.add_filter('quiz', '=', quiz)
+    results =list(query.fetch())
+    for result in results:
+        result['id'] = result.key.id
+    if redact:
+        for result in results:
+            del result['correctAnswer']
+    return results
+
+#def list_entities(quiz='gcp', redact=True):
+#    return []
 
 """
 Create and persist and entity for each question
@@ -36,6 +47,6 @@ Create and persist and entity for each question
 def save_question(question):
     key = datastore_client.key('Question')
     q_entity = datastore.Entity(key=key)
-    for q_prop, q_val in question.iteritems():
+    for q_prop, q_val in question.items():
         q_entity[q_prop] = q_val
     datastore_client.put(q_entity)
