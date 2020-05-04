@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import os
-project_id = os.getenv('GCLOUD_PROJECT')
+#import os
+#project_id = os.getenv('GCLOUD_PROJECT')
 
 from flask import current_app
 from google.cloud import datastore
 
 #datastore_client = datastore.Client(project_id)
-datastore_client = datastore.Client.from_service_account_json('/secrets/datastore/datastore-user-sa.json')
+datastore_client = datastore.Client()
 
 """
 Returns a list of question entities for a given quiz

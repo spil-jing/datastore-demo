@@ -11,12 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#import os
-
 from google.cloud import datastore
-
-project_id = 'jing-vps'
-client = datastore.Client.from_service_account_json('/secrets/datastore/datastore-user-sa.json')
+client = datastore.Client()
 
 """
 Persists initial questions into datastore
@@ -73,9 +69,6 @@ def main():
         },
     ]
 
-    #client = datastore.Client(project_id)
-    #client = datastore.Client.from_service_account_json('/home/julius1204/datastore-user-sa.json')
-    
     """
     Create and persist and entity for each question
     """
