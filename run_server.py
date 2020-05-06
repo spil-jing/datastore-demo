@@ -13,5 +13,8 @@
 # limitations under the License.
 
 from quiz import app
+import add_entities
+
+add_entities.main()
 
 app.run(debug=True, port=8080)
